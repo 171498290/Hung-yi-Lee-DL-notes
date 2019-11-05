@@ -1,7 +1,7 @@
 # Hung-yi Lee 学习笔记: Where does the error from?
 [学习视频链接](https://www.bilibili.com/video/av48285039/?p=8) <br/>
 ## 估计值
-&emsp;&emsp;从训练数据得到的仅仅是对于当前数据所拟合的模型，记作\\(f^*\\),这个模型是对原始模型\\(\hat f\\)的一个估计
+&emsp;&emsp;从训练数据得到的仅仅是对于当前数据所拟合的模型，记作$f^*$,这个模型是对原始模型\\(\hat f\\)的一个估计
 &emsp;&emsp;![图1_靶子](1.png)
 ## 方差和偏差的估计值
 + 估测变量\\(x\\)的均值
