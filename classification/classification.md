@@ -9,9 +9,9 @@ $$P(C_1|x)=\frac{P(x|C_1)P(C_1)}{P(x|C_1)P(C_1)+P(x|C_2)P(C_2)}        (1)$$
 &emsp;&emsp;训练集中现有79只水系宝可梦(Class 1),61只普通系宝可梦(Class 2).容易得到$P(C_1)=\frac{79}{79+61}$,$P(C_2)=\frac{61}{79+61}$.这两个先验概率是训练集中的频率近似替代的结果,而非真正的概率值.
 ## Probility from Class
 &emsp;&emsp;现在有一个问题,如何计算一个没有出现在类别1中的$x$的值,即$P(x|C_1)=?$.<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图2_未知水系宝可梦的出现概率](2.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图2_未知水系宝可梦的出现概率](2.png)<br/>
 &emsp;&emsp;虽然图中的海龟没有出现在79只水系宝可梦中,但其是真实存在的,只是我们的训练集中没有采集到这个海龟的样本.<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图3_水系宝可梦的坐标表示](3.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图3_水系宝可梦的坐标表示](3.png)<br/>
 &emsp;&emsp;上图中将宝可梦转化成向量表示,为了简单起见只使用了SP Defense和Defense两个特征组成的向量.我们可以**假设水系宝可梦的Defense和SP Defense是从Gaussian distribution(高斯分布)中得出的**,当前的79个水系宝可梦是基于Gaussian distribution的抽样.而$P(x|Water)$的值,我们可以通过Gaussian distribution来得到.<br/>
 ### Gaussian distribution:
 $$f_{\mu,\sigma}(x)=\frac{1}{(2\pi)^{D/2}}\frac{1}{|\sigma|^{1/2}}exp{-\frac{1}{2}(x-\mu)^T\sigma^{-1}(x-\mu)}        (2)$$<br/>
@@ -36,7 +36,7 @@ $$=\frac{1}{1+exp(-z)}      (3)$$
 &emsp;&emsp;其中$z$等于:
 $$z=ln\frac{P(x|C_1)P(C_1)}{P(x|C_2)P(C_2)}      (4)$$
 &emsp;&emsp;上述(4)式就是$\sigma(z)$函数(sigmoid function).<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图6_sigmoid函数](6.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图6_sigmoid函数](6.png)<br/>
 &emsp;&emsp;现在分析$\sigma(z)中$的自变量$z$的含义,首相将(4)式分解:
 $$z=ln\frac{P(x|C_1)}{P(x|C_2)}+ln\frac{P(C_1)}{P(C_2)}       (5)$$<br/>
 &emsp;&emsp;(5)中第2项可以表示为:
@@ -51,4 +51,4 @@ $$\frac{1}{2}x^T(\sigma^2)^{-1}x-(\mu^2)^T(\sigma^2)^{-1}x+\frac{1}{2}(\mu^2)^T(
 $$z=(\mu^1-\mu^2)^T\sigma^{-1}x-\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}      (10)$$<br/>
 &emsp;&emsp;令$w^T=(\mu^1-\mu^2)^T\sigma^{-1}$,观察$\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$可以发现其运算后的结果是一个标量,所以可以令$b=\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$,则:
 $$P(C_1|x)=\sigma(w·x+b)      (11)$$<br/>
-既然最终要求的仅仅是$w$和$b$，那我们或许更应该直接来得出我们想要的结果,如何做呢?答案是Logistic Regression(对数几率回归).
+&emsp;&emsp;既然最终要求的仅仅是$w$和$b$，那我们或许更应该直接来得出我们想要的结果,如何做呢?答案是Logistic Regression(对数几率回归).
