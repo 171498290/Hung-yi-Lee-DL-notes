@@ -49,6 +49,6 @@ $$z=ln\frac{|\sigma^2|^{1/2}}{|\sigma^1|^{1/2}}-\frac{1}{2}x^T(\sigma^1)^{-1}x+(
 $$\frac{1}{2}x^T(\sigma^2)^{-1}x-(\mu^2)^T(\sigma^2)^{-1}x+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}      (9)$$<br/>
 &emsp;&emsp;由于假设$\sigma^1=\sigma^2=\sigma$,此时对(9)式进行进一步简化:
 $$z=(\mu^1-\mu^2)^T\sigma^{-1}x-\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}      (10)$$<br/>
-&emsp;&emsp;令$\blod w^{\blod T}=(\mu^1-\mu^2)^T\sigma^{-1}$,观察$\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$可以发现其运算后的结果是一个标量,所以可以令$b=\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$,则:
+&emsp;&emsp;令$w^T=(\mu^1-\mu^2)^T\sigma^{-1}$,观察$\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$可以发现其运算后的结果是一个标量,所以可以令$b=\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$,则:
 $$P(C_1|x)=\sigma(w·x+b)      (11)$$<br/>
 既然最终要求的仅仅是$w$和$b$，那我们或许更应该直接来得出我们想要的结果,如何做呢?答案是Logistic Regression(对数几率回归).
