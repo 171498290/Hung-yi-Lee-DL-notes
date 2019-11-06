@@ -27,7 +27,7 @@ $$f_{\mu,\sigma}(x)=\frac{1}{(2\pi)^{D/2}}\frac{1}{|\sigma|^{1/2}}exp{-\frac{1}{
 &emsp;&emsp;一般的做法是在两种类别上使用同一组$\sigma$,这样在训练时可以有效减少参数.
 &emsp;&emsp;还是使用最大似然估计来得到参数$\mu^1,\sigma,\mu^2$:
 $$L(\mu^1,\mu^2,\sigma)=f_{\mu^1,\sigma}(x^1)f_{\mu^1,\sigma}(x^2)...f_{\mu^1,\sigma}(x^{79}) × f_{\mu^2,\sigma}(x^{80})f_{\mu^2,\sigma}(x^{81})f_{\mu^2,\sigma}(x^{140})$$<br/>
-&emsp;&emsp;值得注意的是$\sigma$的值是$\sigma^1$和$\sigma^2$的加权平均:$\sigma=\frac{79}{140}\sigma^1+frac{61}{140}\sigma^2$.
+&emsp;&emsp;值得注意的是$\sigma$的值是$\sigma^1$和$\sigma^2$的加权平均:$\sigma=\frac{79}{140}\sigma^1+\frac{61}{140}\sigma^2$.
 &emsp;&emsp;在修改模型后准确率从54%上升到73%.
 ## Posterior Probability
 $$P(C_1|x)=\frac{P(x|C_1)P(C_1)}{P(x|C_1)P(C_1)+P(x|C_2)P(C_2)}$$
@@ -45,7 +45,8 @@ $$ln\frac{P(C_1)}{P(C_2)}=ln\frac{\frac{N_1}{N_1+N_2}}{\frac{N_2}{N_1+N_2}}=ln\f
 $$P(x|C_1)=\frac{1}{(2\pi)^{D/2}}\frac{1}{|\sigma^1|^{1/2}}exp{-\frac{1}{2}(x-\mu^1)^T(\sigma^1)^{-1}(x-\mu^1)}      (7)$$<br/>
 $$P(x|C_2)=\frac{1}{(2\pi)^{D/2}}\frac{1}{|\sigma^2|^{1/2}}exp{-\frac{1}{2}(x-\mu^2)^T(\sigma^2)^{-1}(x-\mu^2)}      (8)$$<br/>
 &emsp;&emsp;将(6),(7),(8)带入(5),化简得到:
-$$z=ln\frac{|\sigma^2|^{1/2}}{|\sigma^1|^{1/2}}-\frac{1}{2}x^T(\sigma^1)^{-1}x+(\mu^1)^T(\sigma^1)^{-1}x-\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}x^T(\sigma^2)^{-1}x-(\mu^2)^T(\sigma^2)^{-1}x+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}      (9)$$<br/>
+$$z=ln\frac{|\sigma^2|^{1/2}}{|\sigma^1|^{1/2}}-\frac{1}{2}x^T(\sigma^1)^{-1}x+(\mu^1)^T(\sigma^1)^{-1}x-\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+$$
+$$\frac{1}{2}x^T(\sigma^2)^{-1}x-(\mu^2)^T(\sigma^2)^{-1}x+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}      (9)$$<br/>
 &emsp;&emsp;由于假设$\sigma^1=\sigma^2=\sigma$,此时对(9)式进行进一步简化:
 $$z=(\mu^1-\mu^2)^T\sigma^{-1}x-\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}      (10)$$<br/>
 &emsp;&emsp;令$\blod {w^T}=(\mu^1-\mu^2)^T\sigma^{-1}$,观察$\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$可以发现其运算后的结果是一个标量,所以可以令$b=\frac{1}{2}(\mu^1)^T(\sigma^1)^{-1}\mu^1+\frac{1}{2}(\mu^2)^T(\sigma^2)^{-1}\mu^2+ln\frac{N_1}{N_2}$,则:
