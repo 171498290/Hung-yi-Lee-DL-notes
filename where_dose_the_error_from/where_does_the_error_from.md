@@ -5,10 +5,8 @@
 <<<<<<< HEAD
 &emsp;&emsp;![图1_靶子](1.png)
 ## Esitmator of variance and bias
-=======
 &emsp;&emsp;![图1_靶子](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/where_dose_the_error_from/1.png)
 ## 方差和偏差的估计值
->>>>>>> 6aa3a1227eadcc3fad0384b17118358ac74ed561
 + 估测变量$x$的均值
    + 假设$x$的均值是$\mu$
    + 假设$x$的方差是$\sigma^2$
