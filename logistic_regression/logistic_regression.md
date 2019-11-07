@@ -10,10 +10,10 @@
 
 &emsp;&emsp;现在有一组训练数据,给定一组$w,b$,训练集数据出现的机率可以表示为:
 $$L(w,b)=f_{w,b}(x^1)f_{w,b}(x^2)(1-f_{w,b}(x^3))...f_{w,b}(x^N)$$
-&emsp;&emsp;最有可能的参数$w^'$和$b^'$是使得$L(w,b)$最大的那一组$w,b$:
-$$w^',b^'=\arg\underset{w,b}{\max}L(w,b)$$
+&emsp;&emsp;最有可能的参数${w}'$和${b}'$是使得$L(w,b)$最大的那一组$w,b$:
+$${w}',{b}'=\arg\underset{w,b}{\max}L(w,b)$$
 &emsp;&emsp;其等同于:
-$$w^',b^'=\arg\underset{w,b}{\min}-L(w,b)$$
+$${w}',{b}'=\arg\underset{w,b}{\min}-L(w,b)$$
 &emsp;&emsp;其中:
 $$-lnL(w,b)=-lnf_{w,b}(x^1)-lnf_{w,b}(x^2)-lnf_{w,b}(x^3)...$$
 &emsp;&emsp;为了能进行计算,我们需要把$f(x)$的类别表示转换为数字表示,即将$C^n$转换为$\hat{y^n}:$ 当为类别1时取1,为类别2时取0.<br/>
