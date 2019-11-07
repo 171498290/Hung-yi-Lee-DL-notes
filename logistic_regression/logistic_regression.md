@@ -38,16 +38,16 @@ $$\frac{\partial{lnL(w,b)}}{\partial{w_i}}=\sum_{i}-[\hat{y^i}(1-f_{w,b}(x^n))x_
 $$=\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x^{n}_{i}$$
 
 &emsp;&emsp;经过上述推到后可以得到梯度的更新公式:
-$$w_i{\leftarrow}w_i-\eta\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x^{n}_{i}$$
+$$w_i{\leftarrow}w_i-\eta\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x_{i}^{n}$$
 &emsp;&emsp;上述的梯度更新公式和线性回归的梯度更新公式形式相同,区别在于logistic回归的$\hat{y^n}∈{0,1},f_{w,b}(x)∈[0,1]$,而线性回归的$\hat{y^n}$可以是任何值,$f_{w,b}(x)$是一个实数.
-### Logistic Regression + Square Error?
+### <u>Logistic Regression + Square Error?</u>
 &emsp;&emsp;是否可以使用平方损失函数来进行参数优化呢?答案是否定的,下面给出解释.
 &emsp;&emsp;当我们使用平方损失函数进行梯度下降时,其对参数的偏微分为:
 $$\frac{\partial{(f_{w,b}(x)-\hat{y^n})^2}}{\partial{w_i}}=2(f_{w,b(x)}-\hat{y^n})f_{w,b(x)}(1-f_{w,b(x)})x_i$$
 &emsp;&emsp;当$\hat{y^n}=1$时,如果$f_{w,b}(x^n)=1$(接近目标),那么可以得到$\frac{\partial{L}}{\partial{w_i}}=0$,这个结果是合乎情理的.
 &emsp;&emsp;但是当$\hat{y^n}=1$,而$f_{w,b}(x^n)=0$(远离目标值)时,$\frac{\partial{L}}{\partial{w_i}}=0$,此时我们还在远离极小值点的地方寻求下降梯度,此时下降的速度应该是比较快的,但是由于预测值接近0,从而使得梯度下降地十分缓慢,训练时间变得很长.
 ## Discriminative v.s. Generative
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;!![图2_判别式模型vs生成式模型](2.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图2_判别式模型vs生成式模型](2.png)<br/>
 &emsp;&emsp;上图左边为判别式(Discriminative)模型,右边为生成式(Generative)模型,由于生成式模型在构建时对$x$的分布进行假设(Gaussian distribution等),而判别式模型模型则未作出任何假设,直接由给定数据集进行模型训练.这样就使得他们虽然有相同的模型,但是训练得到的模型参数确实不同的.一般来说,判别式模型是优于生成式模型的.但在模型情况下生成式模型也是存在一定优势的.
 
 + 生成式模型的优点
