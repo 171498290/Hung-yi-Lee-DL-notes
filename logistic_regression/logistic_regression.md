@@ -20,7 +20,7 @@ $$-lnL(w,b)=-lnf_{w,b}(x^1)-lnf_{w,b}(x^2)-lnf_{w,b}(x^3)...$$
 
 | $x^1$  | $x^2$  | $x^3$  | ... ... |
 | ------ | ------ | ------ | ------  |
-| &\hat{y^1}=1& | &\hat{y^2}=1& | &\hat{y^1}=0& | ... ... |
+| $\hat{y^1}=1$ | $\hat{y^2}=1$ | $\hat{y^1}=0$ | ... ... |
 
 &emsp;&emsp;然后我们就可以将$-lnL(w,b)$的每一项写为(其实就是交叉熵):
 $$-lnf_{w,b}(x^i)=-[\hat{y^i}inf(x^i)+(1-\hat{y^i})ln(1-f(x^i))]$$
@@ -33,11 +33,12 @@ $$\frac{\partial{f_{w,b}(x)}}{\partial{w_i}}=\frac{\partial{f_{w,b}(z)}}{\partia
 
 $$\frac{\partial{ln(1-f_{w,b}(x))}}{\partial{w_i}}=\frac{\partial{ln(1-f_{w,b}(z))}}{\partial{z}}\frac{\partial{z}}{\partial{w_i}}=\sigma(z)x_i$$
 
-$$\frac{\partial{lnL(w,b)}}{\partial{w_i}}=\sum_{i}-[\hat{y^i}(1-f_{w,b}(x^n))x^{n}_{i}-(1-\hat{y^n})f_{w,b}(x^n)x^{n}_{i}]$$($x^{n}_{i}$表示第n个向量的第i个分量)
+$$\frac{\partial{lnL(w,b)}}{\partial{w_i}}=\sum_{i}-[\hat{y^i}(1-f_{w,b}(x^n))x^{n}_{i}-(1-\hat{y^n})f_{w,b}(x^n)x^{n}_{i}]$$
 
 $$=\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x^{n}_{i}$$
+
 &emsp;&emsp;经过上述推到后可以得到梯度的更新公式:
-$$w_i \leftarrow w_i-\eta\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x^{n}_{i}$$
+$$w_i{\leftarrow}w_i-\eta\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x^{n}_{i}$$
 &emsp;&emsp;上述的梯度更新公式和线性回归的梯度更新公式形式相同,区别在于logistic回归的$\hat{y^n}∈{0,1},f_{w,b}(x)∈[0,1]$,而线性回归的$\hat{y^n}$可以是任何值,$f_{w,b}(x)$是一个实数.
 ### Logistic Regression + Square Error?
 &emsp;&emsp;是否可以使用平方损失函数来进行参数优化呢?答案是否定的,下面给出解释.
