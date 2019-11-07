@@ -44,7 +44,7 @@ $$w_i{\leftarrow}w_i-\eta\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x_{i}^{n}$$
 &emsp;&emsp;是否可以使用平方损失函数来进行参数优化呢?答案是否定的,下面给出解释.
 &emsp;&emsp;当我们使用平方损失函数进行梯度下降时,其对参数的偏微分为:
 $$\frac{\partial{(f_{w,b}(x)-\hat{y^n})^2}}{\partial{w_i}}=2(f_{w,b(x)}-\hat{y^n})f_{w,b(x)}(1-f_{w,b(x)})x_i$$
-&emsp;&emsp;当$\hat{y^n}=1$时,如果$f_{w,b}(x^n)=1$(接近目标),那么可以得到$\frac{\partial{L}}{\partial{w_i}}=0$,这个结果是合乎情理的.<br/>
+&emsp;&emsp;当$\hat{y^n}=1$时,如果$f_{w,b}(x^n)=1$(接近目标值),那么可以得到$\frac{\partial{L}}{\partial{w_i}}=0$,这个结果是合乎情理的.<br/>
 &emsp;&emsp;但是当$\hat{y^n}=1$,而$f_{w,b}(x^n)=0$(远离目标值)时,$\frac{\partial{L}}{\partial{w_i}}=0$,此时我们还在远离极小值点的地方寻求下降梯度,此时下降的速度应该是比较快的,但是由于预测值接近0,从而使得梯度下降地十分缓慢,训练时间变得很长.
 ## Discriminative v.s. Generative
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图2_判别式模型vs生成式模型](2.png)<br/>
@@ -67,7 +67,7 @@ $$\frac{\partial{(f_{w,b}(x)-\hat{y^n})^2}}{\partial{w_i}}=2(f_{w,b(x)}-\hat{y^n
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图3_对数几率回归的缺陷](3.png)<br/>
 &emsp;&emsp;由于对数几率回归的分割边界就是一条直线,所以我们没有办法给出正确的划分.<br/>
 &emsp;&emsp;对于这种问题,我们可以进行特征转换(Feature Transformation),即将输入值的每个特征做适当变换,使得我们可以对新的输入数据进行有效划分.<br/>
-&emsp;&emsp;视频中给出的一个转换方式是求出当前点与某一点的距离作为当前点某一特征的值,对有$n$个特征的输入而言,需要找到$n$个距离计算点.举例来说,对向量$\vec{x}=[1, 1]$进行转换,距离计算点分别为$\vec{d_1}=[0, 0],\vec{d_2}=[1, 1]$,则转换后的{x}'_{1}=\sqrt{(1-0)^2+(1-0)^2}=\sqrt2$,${x}'_{2}=\sqrt{(0-0)^2+(0-0)^2}=0$,最终得到${x}'=[\sqrt2, 1]$.但是寻找距离计算点是一个比较困难的问题,那么就需要新的解决方法.<br/>
+&emsp;&emsp;视频中给出的一个转换方式是求出当前点与某一点的距离作为当前点某一特征的值,对有$n$个特征的输入而言,需要找到$n$个距离计算点.举例来说,对向量$\vec{x}=[1, 1]$进行转换,距离计算点分别为$\vec{d_1}=[0, 0],\vec{d_2}=[1, 1]$,则转换后的{x}_{1}'=\sqrt{(1-0)^2+(1-0)^2}=\sqrt2$,${x}_{2}'=\sqrt{(0-0)^2+(0-0)^2}=0$,最终得到${x}'=[\sqrt2, 1]$.但是寻找距离计算点是一个比较困难的问题,那么就需要新的解决方法.<br/>
 &emsp;&emsp;我们可以通过堆叠多个对数几率回归来解决问题:<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图4_对数几率回归模型堆叠](4.png)<br/>
 &emsp;&emsp;如图所示,我们可以给输入的特征分量以不同的参数,来获得符合我们预期的转换后的新的特征分量.这样堆叠的每个对数几率回归节点可以称为"神经",堆叠后的整体模型称为"神经网络".<br/>
