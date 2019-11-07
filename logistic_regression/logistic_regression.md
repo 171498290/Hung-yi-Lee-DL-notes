@@ -23,7 +23,7 @@ $$-lnL(w,b)=-lnf_{w,b}(x^1)-lnf_{w,b}(x^2)-lnf_{w,b}(x^3)...$$
 | $\hat{y^1}=1$ | $\hat{y^2}=1$ | $\hat{y^1}=0$ | ... ... |
 
 &emsp;&emsp;然后我们就可以将$-lnL(w,b)$的每一项写为(其实就是交叉熵):
-$$-lnf_{w,b}(x^i)=-[\hat{y^i}inf(x^i)+(1-\hat{y^i})ln(1-f(x^i))]$$
+$$-lnf_{w,b}(x^i)=-[\hat{y^i}lnf(x^i)+(1-\hat{y^i})ln(1-f(x^i))]$$
 &emsp;&emsp;进而将$-lnL(w,b)$整理为:
 $$-lnL(w,b)=\sum_{i}-[\hat{y^i}lnf(x^i)+(1-\hat{y^i})ln(1-f(x^i))]$$
 ## Step 3: Find the best function
@@ -48,7 +48,7 @@ $$\frac{\partial{(f_{w,b}(x)-\hat{y^n})^2}}{\partial{w_i}}=2(f_{w,b(x)}-\hat{y^n
 &emsp;&emsp;但是当$\hat{y^n}=1$,而$f_{w,b}(x^n)=0$(远离目标值)时,$\frac{\partial{L}}{\partial{w_i}}=0$,此时我们还在远离极小值点的地方寻求下降梯度,此时下降的速度应该是比较快的,但是由于预测值接近0,从而使得梯度下降地十分缓慢,训练时间变得很长.
 ## Discriminative v.s. Generative
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图2_判别式模型vs生成式模型](2.png)<br/>
-&emsp;&emsp;上图左边为判别式(Discriminative)模型,右边为生成式(Generative)模型,由于生成式模型在构建时对$x$的分布进行假设(Gaussian distribution等),而判别式模型模型则未作出任何假设,直接由给定数据集进行模型训练.这样就使得他们虽然有相同的模型,但是训练得到的模型参数确实不同的.一般来说,判别式模型是优于生成式模型的.但在模型情况下生成式模型也是存在一定优势的.
+&emsp;&emsp;上图左边为判别式(Discriminative)模型,右边为生成式(Generative)模型,由于生成式模型在构建时对$x$的分布进行假设(Gaussian distribution等),而判别式模型模型则未作出任何假设,直接由给定数据集进行模型训练.这样就使得他们虽然有相同的模型,但是训练得到的模型参数确实不同的.一般来说,判别式模型是优于生成式模型的.但在某些情况下生成式模型也是存在一定优势的.
 
 + 生成式模型的优点
    + 在假设$x$的概率分布的条件下,所需的训练数据更少
