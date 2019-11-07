@@ -10,10 +10,10 @@
 
 &emsp;&emsp;现在有一组训练数据,给定一组$w,b$,训练集数据出现的机率可以表示为:
 $$L(w,b)=f_{w,b}(x^1)f_{w,b}(x^2)(1-f_{w,b}(x^3))...f_{w,b}(x^N)$$
-&emsp;&emsp;最有可能的参数$w^*$和$b^*$是使得$L(w,b)$最大的那一组$w,b$:
-$$w^*,b^*=\arg\underset{w,b}{\max}L(w,b)$$
+&emsp;&emsp;最有可能的参数$w^'$和$b^'$是使得$L(w,b)$最大的那一组$w,b$:
+$$w^',b^'=\arg\underset{w,b}{\max}L(w,b)$$
 &emsp;&emsp;其等同于:
-$$w^*,b^*=\arg\underset{w,b}{\min}-L(w,b)$$
+$$w^',b^'=\arg\underset{w,b}{\min}-L(w,b)$$
 &emsp;&emsp;其中:
 $$-lnL(w,b)=-lnf_{w,b}(x^1)-lnf_{w,b}(x^2)-lnf_{w,b}(x^3)...$$
 &emsp;&emsp;为了能进行计算,我们需要把$f(x)$的类别表示转换为数字表示,即将$C^n$转换为$\hat{y^n}:$ 当为类别1时取1,为类别2时取0.<br/>
@@ -21,17 +21,19 @@ $$-lnL(w,b)=-lnf_{w,b}(x^1)-lnf_{w,b}(x^2)-lnf_{w,b}(x^3)...$$
 | $x^1$  | $x^2$  | $x^3$  | ... ... |
 | ------ | ------ | ------ | ------  |
 | &\hat{y^1}=1& | &\hat{y^2}=1& | &\hat{y^1}=0& | ... ... |
+
 &emsp;&emsp;然后我们就可以将$-lnL(w,b)$的每一项写为(其实就是交叉熵):
 $$-lnf_{w,b}(x^i)=-[\hat{y^i}inf(x^i)+(1-\hat{y^i})ln(1-f(x^i))]$$
 &emsp;&emsp;进而将$-lnL(w,b)$整理为:
 $$-lnL(w,b)=\sum_{i}-[\hat{y^i}lnf(x^i)+(1-\hat{y^i})ln(1-f(x^i))]$$
 ## Step 3: Find the best function
 &emsp;&emsp;在Step2后,我们利用梯度下降法可以求出$-lnL(w,b)$的最小值:
+
 $$\frac{\partial{f_{w,b}(x)}}{\partial{w_i}}=\frac{\partial{f_{w,b}(z)}}{\partial{z}}\frac{\partial{z}}{\partial{w_i}}=(1-\sigma(z))x_i$$
 
 $$\frac{\partial{ln(1-f_{w,b}(x))}}{\partial{w_i}}=\frac{\partial{ln(1-f_{w,b}(z))}}{\partial{z}}\frac{\partial{z}}{\partial{w_i}}=\sigma(z)x_i$$
 
-$$\frac{\partial{lnL(w,b)}}{\partial{w_i}}=\sum_{i}-[\hat{y^i}(1-f_{w,b}(x^n))x^{n}_{i}-(1-\hat{y^n})f_{w,b}(x^n)x^{n}_{i}] (x^{n}_{i}表示第n个向量的第i个分量)$$
+$$\frac{\partial{lnL(w,b)}}{\partial{w_i}}=\sum_{i}-[\hat{y^i}(1-f_{w,b}(x^n))x^{n}_{i}-(1-\hat{y^n})f_{w,b}(x^n)x^{n}_{i}]$$($x^{n}_{i}$表示第n个向量的第i个分量)
 
 $$=\sum_{n}-(\hat{y^n}-f_{w,b}(x^n))x^{n}_{i}$$
 &emsp;&emsp;经过上述推到后可以得到梯度的更新公式:
@@ -62,9 +64,9 @@ $$\frac{\partial{(f_{w,b}(x)-\hat{y^n})^2}}{\partial{w_i}}=2(f_{w,b(x)}-\hat{y^n
 | 1  | 1  | Class 2  |
 
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图3_对数几率回归的缺陷](3.png)<br/>
-&emsp;&emsp;由于对数几率回归的分割边界就是一条直线,所以我们没有办法给出正确的划分.
-&emsp;&emsp;对于这种问题,我们可以进行特征转换(Feature Transformation),即将输入值的每个特征做适当变换,使得我们可以对新的输入数据进行有效划分.
-&emsp;&emsp;视频中给出的一个转换方式是求出当前点与某一点的距离作为当前点某一特征的值,对有$n$个特征的输入而言,需要找到$n$个距离计算点.举例来说,对向量$\vec{x}=[1, 1]$进行转换,距离计算点分别为$\vec{d_1}=[0, 0],\vec{d_2}=[1, 1]$,则转换后的$x^{'}_{1}=\sqrt{(1-0)^2+(1-0)^2}=\sqrt2,x^{'}_{2}=\sqrt{(0-0)^2+(0-0)^2}=0$,最终得到$x^{'}=[\sqrt2, 1]$.但是寻找距离计算点是一个比较困难的问题,那么就需要新的解决方法.
+&emsp;&emsp;由于对数几率回归的分割边界就是一条直线,所以我们没有办法给出正确的划分.<br/>
+&emsp;&emsp;对于这种问题,我们可以进行特征转换(Feature Transformation),即将输入值的每个特征做适当变换,使得我们可以对新的输入数据进行有效划分.<br/>
+&emsp;&emsp;视频中给出的一个转换方式是求出当前点与某一点的距离作为当前点某一特征的值,对有$n$个特征的输入而言,需要找到$n$个距离计算点.举例来说,对向量$\vec{x}=[1, 1]$进行转换,距离计算点分别为$\vec{d_1}=[0, 0],\vec{d_2}=[1, 1]$,则转换后的$x^{'}_{1}=\sqrt{(1-0)^2+(1-0)^2}=\sqrt2$,$x^{'}_{2}=\sqrt{(0-0)^2+(0-0)^2}=0$,最终得到$x^{'}=[\sqrt2, 1]$.但是寻找距离计算点是一个比较困难的问题,那么就需要新的解决方法.<br/>
 &emsp;&emsp;我们可以通过堆叠多个对数几率回归来解决问题:
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图4_对数几率回归模型堆叠](4.png)<br/>
-&emsp;&emsp;如图所示,我们可以给输入的特征分量以不同的参数,来获得符合我们预期的转换后的新的特征分量.这样堆叠的每个对数几率回归节点可以称为"神经",堆叠后的整体模型称为"神经网络".
+&emsp;&emsp;如图所示,我们可以给输入的特征分量以不同的参数,来获得符合我们预期的转换后的新的特征分量.这样堆叠的每个对数几率回归节点可以称为"神经",堆叠后的整体模型称为"神经网络".<br/>
