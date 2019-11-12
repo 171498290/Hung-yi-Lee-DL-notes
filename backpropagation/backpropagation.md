@@ -10,7 +10,7 @@ $$L(\theta)=\sum\_{n=1}^{N}C^{n}(\theta)$$
 $${\frac{\partial L(\theta)}{\partial w}}=\sum\_{n=1}^{N}\frac{\partial{C^n(\theta)}}{\partial{w}}$$
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图3_神经网络](3.png)<br/>
 &emsp;&emsp;如何求得上图中的$\frac{\partial{C}}{\partial{w}}$?,可以使用链式法则将原式拆解成$\frac{\partial{z}}{\partial{w}}\frac{\partial{C}}{\partial{z}}$.<br/>
-&emsp;&emsp;$\frac{\partial{z}}{\partial{w}}$的计算是同过前向传递(Forward pass)进行的,而$\frac{\partial{C}}{\partial{z}}$的计算是同过后向传递(Backward pass)进行的.
+&emsp;&emsp;其中$\frac{\partial{z}}{\partial{w}}$的计算是通过前向传递(Forward pass)进行的,而$\frac{\partial{C}}{\partial{z}}$的计算是通过后向传递(Backward pass)进行的.
 ## Backpropagation - Forward pass
 &emsp;&emsp;前向计算很简单,上图中$\frac{\partial{z}}{\partial{w_1}}=x_1$,$\frac{\partial{z}}{\partial{w_2}}=x_2$.<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图4_前向传播](4.png)<br/>
