@@ -18,7 +18,7 @@ $${\frac{\partial L(\theta)}{\partial w}}=\sum\_{n=1}^{N}\frac{\partial{C^n(\the
 ## Backpropagation - Backward pass
 &emsp;&emsp;后向传播要计算的是$\frac{\partial{C}}{\partial{z}}$,这相较于前向传播更加困难一些,因为是对$C$的微分,所以得一直延申到输出层才可以知道$C$的函数,这就得使用链式法则层层微分,最后得到结果.<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图5_前向传播](5.png)<br/>
-&emsp;&emsp;上图是一个简单后前向传播过程.
+&emsp;&emsp;上图是一个简单的后前向传播过程.
 ## Backpropagation - Summary
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图5_总结](6.png)<br/>
 &emsp;&emsp;通过前向传递和后向传递后就可以对$\frac{\partial{C}}{\partial{w}}$进行计算了,在得到$\frac{\partial{C}}{\partial{w}}$后就可以使用梯度下降来更新参数来最小化模型误差了.
