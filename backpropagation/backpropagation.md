@@ -1,5 +1,5 @@
 # Hung-yi Lee 学习笔记: Backpropagation
-[学习视频链接](https://www.bilibili.com/video/av48285039/?p=9) (文中例子均来自视频)<br/>
+[学习视频链接](https://www.bilibili.com/video/av48285039/?p=12) (文中例子均来自视频)<br/>
 ## Chain Rule
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图1_链式法则](1.png)<br/>
 &emsp;&emsp;上图是关于链式法则的简单回顾.<br/>
