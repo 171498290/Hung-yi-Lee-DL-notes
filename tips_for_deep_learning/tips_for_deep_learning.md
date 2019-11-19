@@ -52,13 +52,13 @@
 $$以\theta^{0}作为初始点$$
 $$移动量\ v^{0}=0$$
 $$计算\theta^{0}处的梯度$$
-$$更新移动量\ v^{1}=\lambda v^{0}-\eta \triangledown  L(\theta^{0})$$
+$$更新移动量\ v^{1}=\lambda v^{0}-\eta \nabla  L(\theta^{0})$$
 $$更新参数\ \theta^{2}=\theta^{1}+v^{2}$$
 
 &emsp;&emsp;实际上$v^{i}$就是过去所有计算出来的梯度的加权总和.
 $$v^{0}=0$$
-$$v^{1}=-\eta \triangledown L(\theta^{1})$$
-$$v^{1}=-\lambda \eta \triangledown L(\theta^{1})-\eta \triangledown L(\theta^{2})$$
+$$v^{1}=-\eta \nabla L(\theta^{1})$$
+$$v^{1}=-\lambda \eta \nabla L(\theta^{1})-\eta \nabla L(\theta^{2})$$
 $$\vdots$$
 
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图15_Momentum图解](15.png)<br/>
