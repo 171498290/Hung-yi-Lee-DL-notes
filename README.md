@@ -16,3 +16,5 @@
 + 📜[攻击模型](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/attack_ML_models/attack_ML_models.md)<br/>
 
 + 📜[深度学习技巧](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/tips_for_deep_learning/tips_for_deep_learning.md)<br/>
+
++ 📜[循环神经网络 Part1](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/recurrent_neural_network_part1/recurrent_neural_network.md)<br/>
