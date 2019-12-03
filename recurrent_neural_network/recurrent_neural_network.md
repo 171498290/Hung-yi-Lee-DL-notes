@@ -46,7 +46,7 @@ $$c^{'}=g(z)f(z\_{i})+cf(z\_{f})$$
 ## Learning Target
 &emsp;&emsp;搭建好了网络后就要考虑如何进行其中的参数优化,举视频中的例子,如下图:<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图13_RNN参数训练](13.png)<br/>
-&emsp;&emsp;例如在做实体识别时,"arrive"的正确标记是"other",则对应的正确的输出标签则是一个在"other"位置为1,其余位置为0的n维one-hot向量,"Taipei"的正确标记是"dest",则对应的正确的输出标签则是一个在"dest"位置为1,其余位置为0的n维one-hot向量,其中n表示标记的数量.优化的目标就是使得训练得到的$\hat y^{i}$和实际的$\y^{i}$越接近越好,此时可以使用交叉熵损失函数进行参数优化.
+&emsp;&emsp;例如在做实体识别时,"arrive"的正确标记是"other",则对应的正确的输出标签则是一个在"other"位置为1,其余位置为0的n维one-hot向量,"Taipei"的正确标记是"dest",则对应的正确的输出标签则是一个在"dest"位置为1,其余位置为0的n维one-hot向量,其中n表示标记的数量.优化的目标就是使得训练得到的$\hat y^{i}$和实际的$y^{i}$越接近越好,此时可以使用交叉熵损失函数进行参数优化.
 ## Learning
 &emsp;&emsp;RNN的训练是通过时间序列上的反向传播(Backpropagation through time)进行的.<br/>
 ### The error surface is rough
