@@ -7,9 +7,9 @@
 &emsp;&emsp;当在不同数据集上构造**复杂模型**时,模型往往会有较大的方差(过拟合状态),但其偏差是较小的,即模型对特定数据集的拟合程度较好.现在如果我们平均不同数据集上的模型$f^{*}$,此时模型的方差减小,所得到的平均值是接近真正的模型$\hat f$的($E[f^{\*}]=\hat f$).<br/>
 &emsp;&emsp;如何制造不同的数据集呢?如果当前有N笔训练数据,我们可以对这N笔训练数据进行放回抽样抽样得到$N'$笔训练数据,当然数目上$N'$可以等于$N$,但是抽样得到的$N’$笔训练数据不会完全和原始数据相同,因为抽样过程中可能重复抽到某些数据.<br/>
 &emsp;&emsp;抽样完成后根据不同训练集构造模型:<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图1_数据集生成](1.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图1_数据集生成](1.png)<br/>
 &emsp;&emsp;训练完成后将测试数据分别输入不同的模型当中然后对输出结果进行平均或者投票选择最后要输出的值:<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图2_测试](2.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图2_测试](2.png)<br/>
 &emsp;&emsp;注意Bagging只有当模型足够复杂,容易产生过拟合时,其才会起效.举例来说,决策树就是一个容易过拟合的模型.
 ### Random Forest
 + Decision tree: 决策树很容易就可以在训练数据上达到0%的错误率
@@ -17,7 +17,7 @@
    + 如果使用传统的采样方法,生成的决策树形状相差不大
    + 在做随机森林时比较典型的方法一般是在每一次要产生决策分支的时候,都随机决定哪一些特征是不能被使用的.
 + Out-of-bag validation of bagging: 一般在进行验证时会将训练集切分成两块,使用out-of-bag的方法则可以不经过切分就完成验证.<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图3_验证](3.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图3_验证](3.png)<br/>
    + 由于$f\_{2}$和$f\_{4}$分别使用数据$x^3,x^4$和$x^2,x^4$,所以使用$f\_{2}+f\_{4}$bagging的结果来测试$x^1$的错误率
    + 由于$f\_{2}$和$f\_{3}$分别使用数据$x^3,x^4$和$x^1,x^3$,所以使用$f\_{2}+f\_{3}$bagging的结果来测试$x^2$的错误率
    + 由于$f\_{1}$和$f\_{4}$分别使用数据$x^1,x^2$和$x^2,x^4$,所以使用$f\_{1}+f\_{4}$bagging的结果来测试$x^3$的错误率
@@ -52,7 +52,7 @@ $$其中Z\_{1}为正则化因子:\ Z\_{1}=\sum\_{n} u\_{1}^{n}$$
 &emsp;&emsp;改变训练数据的权重$u\_{1}^{n} \rightarrow u\_{2}^{n}$使得:
 $$\frac{\sum\_{n} u\_{2}^{n}\delta (f\_{1}(x^{n})\neq \hat y^{n})}{Z\_{2}}=0.5$$
 &emsp;&emsp;这样做看起来就像是在新的权重下$f\_{1}$的表现就像是随机的胡乱猜测一样.然后用新的权重来训练$f\_{2}(x)$,这样训练得到的结果就是互补于$f\_{1}(x)$的.<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图4_adaboost重采样](4.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图4_adaboost重采样](4.png)<br/>
 
 ### Re-weighting Training Data
 &emsp;&emsp;如果$x^{n}$被错误分类,就增加$x^{n}$的权重(乘以$d\_{1}$):
@@ -106,13 +106,13 @@ $$H(x)=sign(\sum\_{t=1}^{T}f\_{t}(x))$$
 $$H(x)=sign(\sum\_{t=1}^{T}\alpha\_{t}f\_{t}(x))$$
 
 ### Toy Example
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图5_例1](5.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图5_例1](5.png)<br/>
 ---
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图6_例2](6.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图6_例2](6.png)<br/>
 ---
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图7_例3](7.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图7_例3](7.png)<br/>
 ---
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图8_例4](8.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图8_例4](8.png)<br/>
 
 ### Error Rate of Final Classifier
 + 最终的分类器为:$H(x)=sign(\sum\_{t=1}^{T}\alpha\_{t}f\_{t}(x))$
