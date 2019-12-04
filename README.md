@@ -18,3 +18,5 @@
 + 📜[深度学习技巧](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/tips_for_deep_learning/tips_for_deep_learning.md)<br/>
 
 + 📜[循环神经网络](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/recurrent_neural_network/recurrent_neural_network.md)<br/>
+
++ 📜[集成学习](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/ensemble/ensemble.md)<br/>
