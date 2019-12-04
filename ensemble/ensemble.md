@@ -49,7 +49,7 @@
 $$先定义\varepsilon\_{1}:\ f\_{1}(x)在其训练集上的错误率$$
 $$\varepsilon\_{1}=\frac{\sum\_{n} u\_{1}^{n}\delta (f\_{1}(x^{n})\neq \hat y^{n})}{Z\_{1}}<0.5$$
 $$其中Z\_{1}为正则化因子:\ Z\_{1}=\sum\_{n} u\_{1}^{n}$$
-&emsp;&emsp;改变训练数据的权重$u\_{1}^{n} \rightwarrow u\_{2}^{n}$使得:
+&emsp;&emsp;改变训练数据的权重$u\_{1}^{n} \rightarrow u\_{2}^{n}$使得:
 $$\frac{\sum\_{n} u\_{2}^{n}\delta (f\_{1}(x^{n})\neq \hat y^{n})}{Z\_{2}}=0.5$$
 &emsp;&emsp;这样做看起来就像是在新的权重下$f\_{1}$的表现就像是随机的胡乱猜测一样.然后用新的权重来训练$f\_{2}(x)$,这样训练得到的结果就是互补于$f\_{1}(x)$的.<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图4_adaboost重采样](4.png)<br/>
@@ -107,8 +107,11 @@ $$H(x)=sign(\sum\_{t=1}^{T}\alpha\_{t}f\_{t}(x))$$
 
 ### Toy Example
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图5_例1](5.png)<br/>
+---
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图6_例2](6.png)<br/>
+---
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图7_例3](7.png)<br/>
+---
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图8_例4](8.png)<br/>
 
 ### Error Rate of Final Classifier
@@ -148,8 +151,8 @@ $$Z\_{t}=Z\_{t-1}\varepsilon\_{t}exp(\alpha\_{t})+Z\_{t-1}(1-\varepsilon\_{t})ex
 &emsp;&emsp;(14)中式子的$Z\_{t-1}\varepsilon\_{t}$表示分类错误的权重值,$Z\_{t-1}(1-\varepsilon\_{t})$表示分类正确的权重值
 &emsp;&emsp;将$\alpha\_{t}$替换得到:
 $$Z\_{t}=Z\_{t-1}\varepsilon\_{t}\sqrt{(1-\varepsilon\_{t})/\varepsilon\_{t}}+Z\_{t-1}(1-\varepsilon\_{t})\sqrt{\varepsilon\_{t}/(1-\varepsilon\_{t}})\ \ \ \ \ (15)$$
-$$=Z\_{t-1}x2\sqrt{\varepsilon(1-\varepsilon)}\ \ \ \ \ (16)$$
-$$Z\_{T+1}=N\prod\_{t=1}^{T}2\sqrt{\varepsilon(1-\varepsilon)\ \ \ \ \ (17)$$
+$$=Z\_{t-1}×2\sqrt{\varepsilon(1-\varepsilon)}\ \ \ \ \ (16)$$
+$$Z\_{T+1}=N\prod\_{t=1}^{T}2\sqrt{\varepsilon(1-\varepsilon)}\ \ \ \ \ (17)$$
 &emsp;&emsp;则最终的训练误差:
-$$≤\prod\_{t=1}^{T}2\sqrt{\varepsilon(1-\varepsilon)\ \ \ \ \ (18)$$
+$$≤\prod\_{t=1}^{T}2\sqrt{\varepsilon(1-\varepsilon)}\ \ \ \ \ (18)$$
 &emsp;&emsp;可以发现,随着T的增大,训练误差是越来越小的.
