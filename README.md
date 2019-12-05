@@ -20,3 +20,5 @@
 + 📜[循环神经网络](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/recurrent_neural_network/recurrent_neural_network.md)<br/>
 
 + 📜[集成学习](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/ensemble/ensemble.md)<br/>
+
++ 📜[半监督学习](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/semi-supervised/semi-supervised.md)<br/>
