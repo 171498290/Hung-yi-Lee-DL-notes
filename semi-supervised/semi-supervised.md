@@ -3,7 +3,7 @@
 ## Introduction
 + 有监督学习: $[(x^{r},\hat y^{r})]\_{r=1}^{R}$
    + E.g.$\ x^{r}$:图片数据,$\hat y^{r}$:图片所属类别
-+ 半监督学习: $[(x^{r},\hat y^{r})]\_{r=1}^{R}, [{x^{u}]\_{u=R}^{R+U}$
++ 半监督学习: $[(x^{r},\hat y^{r})]\_{r=1}^{R}$, $[{x^{u}]\_{u=R}^{R+U}$
    + 在半监督学习中,有大量的无标签数据,而这些无标签数据的数量一般是远远大于有标签数量的$U\gg R$.
    + 一种半监督学习方法被称为传导学习(Transductive learning):无标签数据作为测试数据
    + 另一种半监督学习方法被称为归纳学习(Inductive learning):无标签数据不作为测试数据
@@ -82,32 +82,32 @@ $$s(x^{i},x^{j})=exp(-\gamma {||x^{i}-x^{j}||}^{2})$$
 &emsp;&emsp;emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图10_传递性举例](10.png)<br/>
 &emsp;&emsp;通过上述定性表述了解大致思路后,接下来进行定量分析
 + 定义图中标签的平滑度(smoothness):
-$$S=\frac{1}{2}\sum\_{i,j}w\_{i,j}(y^{i}y^{j})^2$$
+$$S=\frac{1}{2}\sum\_{i,j}w\_{i,j}(y^{i},y^{j})^2$$
    + $i,j$表示的是相互直接连接的点
    + $w\_{i,j}$是相邻点边的权重
    + 无论是有标签数据还是无标签数据都要被计算在内<br/>
 
 &emsp;&emsp;emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图11_平滑度计算](11.png)<br/>
 &emsp;&emsp;上述的平滑度计算公式可以一矩阵的方式来重写:
-$$S=\frac{1}{2}\sum\_{i,j}w\_{i,j}(y^{i}y^{j})^2=\mathbf{y^{T}}L\mathbf{y}$$
+$$S=\frac{1}{2}\sum\_{i,j}w\_{i,j}(y^{i},y^{j})^2=\mathbf{y^{T}}L\mathbf{y}$$
 &emsp;&emsp;其中$\mathbf{y}$是一个$(R+U)$维的向量:
 $$\mathbf{y}=[\cdots y^{i}\cdots y^{j}\cdots]^{T}$$
 &emsp;&emsp;$L$是一个$(R+U)×(R+U)$的矩阵:
 $$L=D-W$$
 $$W=
 \begin{bmatrix}
- 0&  2&  3& 0\\ 
- 2&  0&  1& 0\\ 
- 3&  1&  1& 0\\ 
+ 0&  2&  3& 0\\\ 
+ 2&  0&  1& 0\\\ 
+ 3&  1&  1& 0\\\ 
  0&  0&  1& 0
 \end{bmatrix}
 $$
 
 $$D=
 \begin{bmatrix}
- 5&  0&  0& 0\\ 
- 0&  3&  0& 0\\ 
- 0&  0&  5& 0\\ 
+ 5&  0&  0& 0\\\ 
+ 0&  3&  0& 0\\\ 
+ 0&  0&  5& 0\\\ 
  0&  0&  0& 1
 \end{bmatrix}
 $$
