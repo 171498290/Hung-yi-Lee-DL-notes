@@ -30,6 +30,6 @@ $$Accuracy = \frac{1}{T}\sum\_{i=1}^{T}R\_{T,i}$$<br/>
 &emsp;&emsp;还可以知道机器多能够记得先前的信息,不过这个值往往是负值:<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图5_评估方法1](5.png)<br/>
 $$Backward\ Transfer = \frac{1}{T-1}\sum\_{i=1}^{T-1}R\_{T,i}-R\_{i,i}$$<br/>
-&emsp;&emsp;还可以知道机器没学到当前任务时,可以学到当前任务的多少:
+&emsp;&emsp;还可以知道机器没学到当前任务时,可以学到当前任务的多少:<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图6_评估方法2](6.png)<br/>
 $$Forward\ Transfer = \frac{1}{T-1}\sum\_{i=2}^{T}R\_{i-1,i}-R\_{0,i}$$
