@@ -26,10 +26,10 @@ $$L^{'}(\theta)=L(\theta)+\lambda \sum\_{i}b\_{i}(\theta\_{i}-\theta\_{i}^{b})^{
 &emsp;&emsp;如果$i>j$,则表示在训练完任务$i$后,任务$j$是否被遗忘.<br/>
 &emsp;&emsp;如果$i<j$,则表示任务$i$学习的知识是否能够transfer到任务$j$上去.<br/>
 &emsp;&emsp;利用这个矩阵可以知道模型的准确率:
-$$Accuracy = \frac{1}{T}\sum\_{i=1}^{T}R\_{T,i}$$
-&emsp;&emsp;还可以知道机器多能够记得先前的信息,不过这个值往往是负值:
+$$Accuracy = \frac{1}{T}\sum\_{i=1}^{T}R\_{T,i}$$<br/>
+&emsp;&emsp;还可以知道机器多能够记得先前的信息,不过这个值往往是负值:<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图5_评估方法1](5.png)<br/>
-$$Backward Transfer = \frac{1}{T-1}\sum\_{i=1}^{T-1}R\_{T,i}-R\_{i,i}$$
+$$Backward\ Transfer = \frac{1}{T-1}\sum\_{i=1}^{T-1}R\_{T,i}-R\_{i,i}$$<br/>
 &emsp;&emsp;还可以知道机器没学到当前任务时,可以学到当前任务的多少:
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图6_评估方法2](6.png)<br/>
-$$Forward Transfer = \frac{1}{T-1}\sum\_{i=2}^{T}R\_{i-1,i}-R\_{0,i}$$
+$$Forward\ Transfer = \frac{1}{T-1}\sum\_{i=2}^{T}R\_{i-1,i}-R\_{0,i}$$
