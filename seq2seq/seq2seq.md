@@ -68,4 +68,21 @@ $$c^{0}=\sum \hat{\alpha\_{0}^{i}}h^{i}$$
 $$=0.5h^{1}+0.5h^{2}$$<br/>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图16_注意力模型2](16.png)<br/>
 &emsp;&emsp;在第一个时间步骤的解码过程中,将$z^{0}$和$c^{0}$作为输入生成一个翻译后的词语,同时输出$z^{1}$,再将$z^{1}$和$h^{t}$做匹配计算获得$c^{1}$,然后使用$z^{1}$和$c^{1}$加上上一个时间步输出的词汇作为输入输出当前时间步的词汇和新的$z^{2}$...依次往复,直到出现结束标志.<br/>
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图16_注意力模型3](17.png)<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图17_注意力模型3](17.png)<br/>
+## Tips for Generation
+### Attention
+&emsp;&emsp;在注意力模型中解码器(Decoder)每一个时间步的输出由注意力得分控制,如果这些得分出现问题,那对于解码输出来说也是不好的.<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图18_Attention tips](18.png)<br/>
+&emsp;&emsp;上图中$\alpha\_{t}{i}$代表在解码器的第t个时间步上的解码器上第i个时间步的注意力得分.从上图可以看到在解码器的第二和第四个时间步上,第二章图片的注意力都很高,这样的注意力就可能导致输出的第二个词汇和第四个词汇都是woman.<br/>
+&emsp;&emsp;较好的注意力则是每次输入的各个注意力得分大约都有相同的权重:
+$$E.g Regularization term:\sum\_{i}(=\sum\_{t}\tau - \alpha\_{t}{i})^{2}$$<br/>
+### Mismatch between Train and Test
+&emsp;&emsp;序列模型在训练时下一个时间步的输入中是前一个时间步的正确序列的输出,即在训练时的数据是由参考的.<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图19_训练和测试时的不匹配问题1](19.png)<br/>
+&emsp;&emsp;而在测试时下一个时间步的输入是上一个时间步的预测输出.<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图20_训练和测试时的不匹配问题2](20.png)<br/>
+&emsp;&emsp;假设现在模型只能生成两个词汇A,B.在训练时都是由正确输出来做参考的,所以即使是第一步走错,后面也会被纠正回来的.而在测试时没有参考的情况下每一个分支都是可以进行尝试的,而这些尝试中就存在训练时没有出现的情况,就会出现一步错,步步错的情况.<br/>
+&emsp;&emsp;一种方法是在训练时将当前时间步的预测输出加入到下一个时间步的输入当中,这样就会产生多种分支,减少不匹配问题.但这种方法在实际操作中很难训练到一个好的结果.
+#### Scheduled Sampling
+&emsp;&emsp;给机器看正确的答案,就会让训练和测试不一致,给机器看其自己生成的东西,结果又做不好,那不如来一个折衷做法.在训练时下一个时间步的输入用正确值还是预测值是由抛硬币来决定的.与此同时,抛硬币正反面的几率是动态调整的.<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;![图21_schedualed sampling](21.png)<br/>
