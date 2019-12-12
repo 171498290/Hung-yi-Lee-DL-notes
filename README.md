@@ -24,3 +24,5 @@
 + 📜[半监督学习](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/semi-supervised/semi-supervised.md)<br/>
 
 + 📜[终身学习](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/life_long_learning/life_long_learning.md)<br/>
+
++ 📜[序列模型](https://github.com/171498290/Hung-yi-Lee-DL-notes/blob/master/seq2seq/seq2seq.md)<br/>
